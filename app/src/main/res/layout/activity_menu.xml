@@ -30,4 +30,12 @@
         android:onClick="startGame"
         android:text="@string/play_btn"/>
 
+    <Button
+        android:id="@+id/show_list_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_spacing"
+        android:onClick="showProductsList"
+        android:text="@string/show_products_list"/>
+
 </LinearLayout>

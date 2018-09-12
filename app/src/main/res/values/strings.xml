@@ -3,4 +3,5 @@
     <string name="play_btn">Jogar</string>
     <string name="text_placeholder">Isso não deveria estar aqui</string>
     <string name="guessed_letters">Letras já tentadas:</string>
+    <string name="show_products_list">Listar produtos</string>
 </resources>
