@@ -5,8 +5,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="@dimen/default_padding"
+    android:gravity="center_vertical"
     tools:context=".GameActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            android:text="Faltam:"/>
+        <TextView
+            android:id="@+id/counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:layout_marginLeft="@dimen/default_spacing"
+            android:text="6"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:layout_marginLeft="@dimen/default_spacing"
+            android:text="tentativas"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/secret_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+        android:layout_margin="@dimen/default_spacing"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/text_placeholder"/>
+
+
+
+    <EditText
+        android:id="@+id/campo_letra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:maxLength="1"
+        android:inputType="textShortMessage"
+        android:layout_margin="@dimen/default_spacing"
+        android:hint="Letra" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chutar"
+        android:layout_gravity="center"
+        android:onClick="chutarLetra"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+        android:text="@string/guessed_letters"/>
+
+    <TextView
+        android:id="@+id/ja_escolhidas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,3 +81,4 @@
         android:onClick="showRewardedVideo"/>
 
 </LinearLayout>
+

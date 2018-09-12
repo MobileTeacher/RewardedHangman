@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">Hangman</string>
+    <string name="app_name">APPendurado</string>
+    <string name="play_btn">Jogar</string>
+    <string name="text_placeholder">Isso não deveria estar aqui</string>
+    <string name="guessed_letters">Letras já tentadas:</string>
 </resources>

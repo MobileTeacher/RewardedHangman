@@ -17,7 +17,12 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
     }
 
-    public void startGame(View view){
-        startActivity(new Intent(this, GameActivity.class));
+    public void startGame(View botao){
+        android.widget.EditText wordField = findViewById(R.id.palavra_escolhida);
+        String word = wordField.getText().toString().toUpperCase();
+
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("palavra", word);
+        startActivity(intent);
     }
 }
