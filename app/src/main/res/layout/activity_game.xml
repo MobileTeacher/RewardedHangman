@@ -80,5 +80,13 @@
         android:text="Assistir ao vídeo por 1 vida?"
         android:onClick="showRewardedVideo"/>
 
+    <Button
+        android:id="@+id/buy_hint_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Comprar uma dica"
+        android:onClick="buyHint"
+        android:enabled="false"/>
+
 </LinearLayout>
 

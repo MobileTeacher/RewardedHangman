@@ -1,4 +1,4 @@
-package br.edu.infnet.hangman;
+package br.edu.infnet.appendurado;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package br.edu.infnet.hangman;
+package br.edu.infnet.appendurado;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;
@@ -6,20 +6,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.PurchasesUpdatedListener;
+import com.android.billingclient.api.SkuDetailsParams;
+import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameActivity extends AppCompatActivity
@@ -34,6 +39,8 @@ public class GameActivity extends AppCompatActivity
     private TextView counterTextView;
     private String letrasJaEscolhidas = "";
 
+    private Button buyButton;
+
     private final String TAG = "DEBUG";
     private BillingClient billingClient;
     @Override
@@ -44,6 +51,7 @@ public class GameActivity extends AppCompatActivity
 
         secretTextView = findViewById(R.id.secret_word);
         counterTextView = findViewById(R.id.counter);
+        buyButton = findViewById(R.id.buy_hint_btn);
 
         // como calcular a hiddenText?
         Intent intent = getIntent();
@@ -88,12 +96,27 @@ public class GameActivity extends AppCompatActivity
         billingClient.startConnection(new BillingClientStateListener() {
             @Override
             public void onBillingSetupFinished(int responseCode) {
-                
+                Toast.makeText(GameActivity.this, "VAMOS VER", Toast.LENGTH_SHORT).show();
+                if (responseCode == BillingClient.BillingResponse.OK) {
+                    buyButton.setEnabled(true);
+                    List skuList = new ArrayList<>();
+                    skuList.add("premium_upgrade");
+                    SkuDetailsParams.Builder params = SkuDetailsParams.newBuilder();
+                    params.setSkusList(skuList).setType(BillingClient.SkuType.INAPP);
+                    billingClient.querySkuDetailsAsync(params.build(),
+                            new SkuDetailsResponseListener() {
+                                @Override
+                                public void onSkuDetailsResponse(int responseCode, List skuDetailsList) {
+                                    // Process the result.
+
+                                }
+                            });
+                }
             }
 
             @Override
             public void onBillingServiceDisconnected() {
-
+                Toast.makeText(GameActivity.this, "DISCONNECTED PLAY", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -166,6 +189,13 @@ public class GameActivity extends AppCompatActivity
         campoLetra.setText("");
         letrasJaEscolhidas += letra + " ";
         updateUI();
+    }
+
+    public void buyHint(View view){
+        BillingFlowParams params = BillingFlowParams.newBuilder()
+                                    .setSku("dica01")
+                                    .setType(BillingClient.SkuType.INAPP).build();
+        int responseCode = billingClient.launchBillingFlow(this, params);
     }
 
 

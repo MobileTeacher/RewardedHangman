@@ -1,4 +1,4 @@
-package br.edu.infnet.hangman;
+package br.edu.infnet.appendurado;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

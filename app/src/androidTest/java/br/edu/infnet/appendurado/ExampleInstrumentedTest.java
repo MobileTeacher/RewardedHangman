@@ -1,4 +1,4 @@
-package br.edu.infnet.hangman;
+package br.edu.infnet.appendurado;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
