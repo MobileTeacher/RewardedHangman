@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MenuActivity"
+        <activity
+            android:name=".MenuActivity"
             android:label="MENU Full">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,11 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameActivity"
-            android:label="GAME Full"/>
-        <activity android:name=".ResultActivity"
-            android:label="Result Full"/>
-        <activity android:name=".ProductListActivity"></activity>
+        <activity
+            android:name=".GameActivity"
+            android:label="GAME Full" />
+        <activity
+            android:name=".ResultActivity"
+            android:label="Result Full" />
+        <activity android:name=".ProductListActivity" />
+        <activity android:name=".full.MenuDemoActivity"></activity>
     </application>
 
 </manifest>
