@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="#aaaaaa"
+    tools:context=".MenuActivity">
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_spacing"
+        >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/palavra_escolhida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Palavra" />
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:onClick="startGame"
+        android:text="@string/play_btn"/>
+
+    <Button
+        android:id="@+id/show_list_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_spacing"
+        android:onClick="showProductsList"
+        android:text="@string/show_products_list"/>
+
+</LinearLayout>
