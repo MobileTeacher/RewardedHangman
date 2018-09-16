@@ -3,6 +3,7 @@ package br.edu.infnet.appendurado;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -62,6 +63,9 @@ public class ProductListActivity extends AppCompatActivity
                                                         "Lista: " + skuDetailsList.size(),
                                                         Toast.LENGTH_SHORT).show();
                                 recyclerView.setLayoutManager(new LinearLayoutManager(ProductListActivity.this));
+                                recyclerView.addItemDecoration(new DividerItemDecoration(
+                                                                ProductListActivity.this,
+                                                                    DividerItemDecoration.VERTICAL));
                                 recyclerView.setAdapter(new ProductsAdapter(skuDetailsList, ProductListActivity.this));
                             } else {
                                 Toast.makeText(ProductListActivity.this, "FALHOU LISTA", Toast.LENGTH_SHORT).show();

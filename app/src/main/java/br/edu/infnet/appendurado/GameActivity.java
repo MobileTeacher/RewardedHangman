@@ -118,6 +118,9 @@ public class GameActivity extends AppCompatActivity
             public void onBillingServiceDisconnected() {
                 Toast.makeText(GameActivity.this, "DISCONNECTED PLAY", Toast.LENGTH_SHORT).show();
             }
+
+
+
         });
     }
 
