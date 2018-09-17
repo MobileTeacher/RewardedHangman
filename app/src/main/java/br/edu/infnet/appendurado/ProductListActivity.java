@@ -48,6 +48,7 @@ public class ProductListActivity extends AppCompatActivity
                     List<String> skuList = new ArrayList<>();
                     skuList.add("dica01");
                     skuList.add("words_package01");
+                    skuList.add("life_update01");
 
                     SkuDetailsParams skuDetailsParams = SkuDetailsParams.newBuilder()
                                                             .setSkusList(skuList)

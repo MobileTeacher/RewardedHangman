@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
+import com.android.billingclient.api.ConsumeResponseListener;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.SkuDetailsParams;
@@ -99,18 +100,53 @@ public class GameActivity extends AppCompatActivity
                 Toast.makeText(GameActivity.this, "VAMOS VER", Toast.LENGTH_SHORT).show();
                 if (responseCode == BillingClient.BillingResponse.OK) {
                     buyButton.setEnabled(true);
-                    List skuList = new ArrayList<>();
-                    skuList.add("premium_upgrade");
-                    SkuDetailsParams.Builder params = SkuDetailsParams.newBuilder();
-                    params.setSkusList(skuList).setType(BillingClient.SkuType.INAPP);
-                    billingClient.querySkuDetailsAsync(params.build(),
-                            new SkuDetailsResponseListener() {
-                                @Override
-                                public void onSkuDetailsResponse(int responseCode, List skuDetailsList) {
-                                    // Process the result.
+                    Purchase.PurchasesResult purchasesResult = billingClient.queryPurchases(BillingClient.SkuType.INAPP);
 
-                                }
-                            });
+                    List<Purchase> purchasesList = purchasesResult.getPurchasesList();
+                    if (purchasesList != null){
+                        for (Purchase purchase: purchasesList){
+                            if (purchase.getSku().equals("dica01")){
+                                final Purchase hintPurchase = purchase;
+                                Button button = findViewById(R.id.hint_button);
+                                button.setVisibility(View.VISIBLE);
+                                button.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        billingClient.consumeAsync(hintPurchase.getPurchaseToken(),
+                                                new ConsumeResponseListener() {
+                                                    @Override
+                                                    public void onConsumeResponse(int responseCode, String purchaseToken) {
+                                                        if (responseCode == BillingClient.BillingResponse.OK){
+                                                            Toast.makeText(GameActivity.this,
+                                                                    String.format("Item %s consumido!", purchaseToken),
+                                                                    Toast.LENGTH_LONG).show();
+                                                        } else {
+                                                            Toast.makeText(GameActivity.this, "FALHOU CONSUMO",
+                                                                    Toast.LENGTH_LONG).show();
+                                                        }
+
+                                                    }
+                                                });
+                                    }
+                                });
+                            }
+                        }
+                    }
+
+                    // verificar compras
+
+//                    List skuList = new ArrayList<>();
+//                    skuList.add("premium_upgrade");
+//                    SkuDetailsParams.Builder params = SkuDetailsParams.newBuilder();
+//                    params.setSkusList(skuList).setType(BillingClient.SkuType.INAPP);
+//                    billingClient.querySkuDetailsAsync(params.build(),
+//                            new SkuDetailsResponseListener() {
+//                                @Override
+//                                public void onSkuDetailsResponse(int responseCode, List skuDetailsList) {
+//                                    // Process the result.
+//
+//                                }
+//                            });
                 }
             }
 
